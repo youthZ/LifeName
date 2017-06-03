@@ -36,13 +36,40 @@ public class LifeGame {
     }
 
     public char update(int row, int col, char [][]graph){
+        //记录活着的细胞数count
+        int count = 0;
+        if(graph[row-1][col-1] == '*'){
+            count++;
+        }
+        if(graph[row-1][col] == '*'){
+            count++;
+        }if(graph[row-1][col+1] == '*'){
+            count++;
+        }if(graph[row][col-1] == '*'){
+            count++;
+        }if(graph[row][col+1] == '*'){
+            count++;
+        }if(graph[row+1][col-1] == '*'){
+            count++;
+        }if(graph[row+1][col] == '*'){
+            count++;
+        }if(graph[row+1][col+1] == '*'){
+            count++;
+        }
+        if(count ==3){
+            graph[row][col] ='*';
+            return graph[row][col];
+        }else if(count == 2){
+            return graph[row][col];
+        }else{
+            graph[row][col]=' ';
+            return graph[row][col];
+        }
 
-        return graph[row][col];
     }
 
     public char[][] gameContinue(char[][] graph){
-        //记录活着的细胞数count
-        int count = 0;
+
         for(int index = 1; index<graph.length; index++){
             for (int tab = 1; tab< graph[index].length; tab++){
                 graph[index][tab] = update(index,tab,graph);
