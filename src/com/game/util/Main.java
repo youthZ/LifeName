@@ -40,6 +40,7 @@ public class Main {
             for (int i = 0; i < times; i++) {
                 graph = new LifeGame().gameContinue(graph);
                 new OutPutPrint().outPutPrintResult(graph);
+                System.out.println("-----------------------------------------------------------");
             }
         }
     }
