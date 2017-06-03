@@ -6,86 +6,16 @@ package com.game.util;
 //定义：*代表alive  space代表dead
 public class LifeGame {
     //自己给好的一个初始化状态
-    public char[][] init(){
-            char[][] graph = new char[3][3];
-            for(int i = 0; i<graph.length; i++){
-                for (int j = 0; j< graph[i].length;j++){
-                    if((i == 0) ||(i == 2)){
-                        graph [i][j]= ' ';
-                    }else {
-                        graph [i][j]= '*';
-                    }
-                }
-            }
 
-            return graph;
-    }
-    public char[][] expendInit(){
-        char[][] graph = init();
-        char[][] graphIncrease = new char[graph.length+2][graph.length+2];
-        for (int row= 0; row < graphIncrease.length; row++){
-            for (int col = 0; col < graphIncrease[row].length; col++){
-                if((row == 0) || (col == 0 ) || (row == graphIncrease.length-1) || (col == graphIncrease[row].length-1)){
-                    graphIncrease[row][col]=' ';
-                }else {
-                    graphIncrease[row][col] = graph[row-1][col-1];
-                }
 
+    public char[][] gameContinue(char[][] graph) {
+        char[][] newGraph = new char[graph.length][graph.length];
+        for (int index = 1; index < graph.length - 1; index++) {
+            for (int tab = 1; tab < graph[index].length - 1; tab++) {
+                newGraph[index][tab] = new UpdateLifeOrDead().update(index, tab, graph);
             }
         }
-        return graphIncrease;
+        return newGraph;
     }
 
-    public char update(int row, int col, char [][]graph){
-        //记录活着的细胞数count
-        int count = 0;
-        if(graph[row-1][col-1] == '*'){
-            count++;
-        }
-        if(graph[row-1][col] == '*'){
-            count++;
-        }if(graph[row-1][col+1] == '*'){
-            count++;
-        }if(graph[row][col-1] == '*'){
-            count++;
-        }if(graph[row][col+1] == '*'){
-            count++;
-        }if(graph[row+1][col-1] == '*'){
-            count++;
-        }if(graph[row+1][col] == '*'){
-            count++;
-        }if(graph[row+1][col+1] == '*'){
-            count++;
-        }
-        if(count == 3){
-            graph[row][col] ='*';
-            return graph[row][col];
-        }else if(count == 2){
-            return graph[row][col];
-        }else{
-            graph[row][col]=' ';
-            return graph[row][col];
-        }
-
-    }
-
-    public char[][] gameContinue(char[][] graph){
-
-        for(int index = 1; index<graph.length-1; index++){
-            for (int tab = 1; tab< graph[index].length-1; tab++){
-                graph[index][tab] = update(index,tab,graph);
-             }
-        }
-        return graph;
-    }
-    public static void main(String args[]){
-        char [][] graph =new LifeGame().expendInit();
-        graph = new LifeGame().gameContinue(graph);
-        for(int row = 0; row < graph.length; row ++){
-            for(int col = 0; col < graph[row].length; col++){
-                System.out.print(graph[row][col]);
-            }
-            System.out.println("");
-        }
-    }
 }
