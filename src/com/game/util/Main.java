@@ -8,24 +8,27 @@ import java.util.Scanner;
 public class Main {
     public static void main(String args[]) {
         char[][] graph = null;
-        System.out.println("please make your choice by message:");
+        OutPutPrint outPutPrint = new OutPutPrint();
+        TemplateGame templateGame = new TemplateGame();
+        System.out.println("please make your choice by message and input your times:");
         System.out.println("1.templateGame01:");
-        new OutPutPrint().outPutPrint(new TemplateGame().templateGame01);
+        outPutPrint.outPutPrintTemplate(templateGame.getTemplateGame01());
         System.out.println("2.templateGame02:");
-        new OutPutPrint().outPutPrint(new TemplateGame().templateGame02);
+        outPutPrint.outPutPrintTemplate(templateGame.getTemplateGame02());
         System.out.println("3.templateGame03:");
-        new OutPutPrint().outPutPrint(new TemplateGame().templateGame03);
+        outPutPrint.outPutPrintTemplate(templateGame.getTemplateGame03());
         Scanner scanner = new Scanner(System.in);
         int choice = scanner.nextInt();
+        int times = scanner.nextInt();
         switch (choice){
             case 1:
-                graph = new TemplateGame().templateGame01;
+                graph = templateGame.getTemplateGame01();
                 break;
             case 2:
-                graph = new TemplateGame().templateGame02;
+                graph = templateGame.getTemplateGame02();
                 break;
             case 3:
-                graph = new TemplateGame().templateGame03;
+                graph = templateGame.getTemplateGame03();
                 break;
             default:
                 System.out.println("your choice is wrong! ");
@@ -34,8 +37,9 @@ public class Main {
         }
         if(graph != null) {
             graph = new InitGame().expendInit(graph);
-            for (int i = 0; i < 2; i++) {
+            for (int i = 0; i < times; i++) {
                 graph = new LifeGame().gameContinue(graph);
+                new OutPutPrint().outPutPrintResult(graph);
             }
         }
     }
