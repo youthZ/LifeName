@@ -20,9 +20,10 @@ public class LifeGame {
 
             return graph;
     }
-    public char[][] expendInit(char[][] graph){
-        char[][] graphIncrease = new char[graph.length+1][graph.length+1];
-        for (int row= 0; i < graphIncrease.length; i++){
+    public char[][] expendInit(){
+        char[][] graph = init();
+        char[][] graphIncrease = new char[graph.length+2][graph.length+2];
+        for (int row= 0; row < graphIncrease.length; row++){
             for (int col = 0; col < graphIncrease[row].length; col++){
                 if((row == 0) || (col == 0 ) || (row == graphIncrease.length-1) || (col == graphIncrease[row].length-1)){
                     graphIncrease[row][col]=' ';
@@ -32,7 +33,7 @@ public class LifeGame {
 
             }
         }
-        return graph;
+        return graphIncrease;
     }
 
     public char update(int row, int col, char [][]graph){
@@ -56,7 +57,7 @@ public class LifeGame {
         }if(graph[row+1][col+1] == '*'){
             count++;
         }
-        if(count ==3){
+        if(count == 3){
             graph[row][col] ='*';
             return graph[row][col];
         }else if(count == 2){
@@ -70,11 +71,21 @@ public class LifeGame {
 
     public char[][] gameContinue(char[][] graph){
 
-        for(int index = 1; index<graph.length; index++){
-            for (int tab = 1; tab< graph[index].length; tab++){
+        for(int index = 1; index<graph.length-1; index++){
+            for (int tab = 1; tab< graph[index].length-1; tab++){
                 graph[index][tab] = update(index,tab,graph);
-            }
+             }
         }
         return graph;
+    }
+    public static void main(String args[]){
+        char [][] graph =new LifeGame().expendInit();
+        graph = new LifeGame().gameContinue(graph);
+        for(int row = 0; row < graph.length; row ++){
+            for(int col = 0; col < graph[row].length; col++){
+                System.out.print(graph[row][col]);
+            }
+            System.out.println("");
+        }
     }
 }
