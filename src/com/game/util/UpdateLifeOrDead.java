@@ -37,7 +37,7 @@ public class UpdateLifeOrDead {
         } else if (count == 2) {
             return graph[row][col];
         } else {
-            return ' ';
+            return '-';
         }
     }
 }

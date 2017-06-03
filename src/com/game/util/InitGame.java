@@ -15,33 +15,32 @@ public class InitGame {
         for (int i = 0; i < graph.length; i++) {
             for (int j = 0; j < graph[i].length; j++) {
                 if((i == 0) && (j == 0) ){
-                    graph[i][j] = '*';
+                    graph[i][j] = '-';
                 }
                 if((i == 0) && (j == 1)){
-                    graph[i][j] = ' ';
+                    graph[i][j] = '-';
                 }
                 if((i == 0) && (j == 2)){
-                    graph[i][j] = '*';
+                    graph[i][j] = '-';
                 }
                 if((i == 1) && (j == 0)){
-                    graph[i][j] = ' ';
+                    graph[i][j] = '*';
                 }
                 if((i == 1) && (j == 1)){
                     graph[i][j] = '*';
                 }
                 if((i == 1) && (j == 2)){
-                    graph[i][j] = ' ';
+                    graph[i][j] = '*';
                 }
                 if((i == 2) && (j == 0)){
-                    graph[i][j] = '*';
+                    graph[i][j] = '-';
                 }
                 if((i == 2) && (j == 1)){
-                    graph[i][j] = ' ';
+                    graph[i][j] = '-';
                 }
                 if((i == 2) && (j == 2)){
-                    graph[i][j] = '*';
+                    graph[i][j] = '-';
                 }
-
             }
         }
 
@@ -54,11 +53,10 @@ public class InitGame {
         for (int row = 0; row < graphIncrease.length; row++) {
             for (int col = 0; col < graphIncrease[row].length; col++) {
                 if ((row == 0) || (col == 0) || (row == graphIncrease.length - 1) || (col == graphIncrease[row].length - 1)) {
-                    graphIncrease[row][col] = ' ';
+                    graphIncrease[row][col] = '-';
                 } else {
                     graphIncrease[row][col] = graph[row - 1][col - 1];
                 }
-
             }
         }
         return graphIncrease;
