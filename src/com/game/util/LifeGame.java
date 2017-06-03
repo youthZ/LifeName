@@ -8,6 +8,16 @@ public class LifeGame {
     //自己给好的一个初始化状态
     public char[][] init(){
             char[][] graph = new char[3][3];
+            for(int i = 0; i<graph.length; i++){
+                for (int j = 0; j< graph[i].length;j++){
+                    if((i == 0) ||(i == 2)){
+                        graph [i][j]= ' ';
+                    }else {
+                        graph [i][j]= '*';
+                    }
+                }
+            }
+
             return graph;
     }
     public char[][] expendInit(char[][] graph){
