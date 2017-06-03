@@ -24,9 +24,12 @@ public class LifeGame {
         char[][] graphIncrease = new char[graph.length+1][graph.length+1];
         for (int row= 0; i < graphIncrease.length; i++){
             for (int col = 0; col < graphIncrease[row].length; col++){
-                if((row == 0) || (col == 0 ) || (row == graphIncrease.length-1) || (col == graphIncrease[row].length-1){
+                if((row == 0) || (col == 0 ) || (row == graphIncrease.length-1) || (col == graphIncrease[row].length-1)){
                     graphIncrease[row][col]=' ';
+                }else {
+                    graphIncrease[row][col] = graph[row-1][col-1];
                 }
+
             }
         }
         return graph;
